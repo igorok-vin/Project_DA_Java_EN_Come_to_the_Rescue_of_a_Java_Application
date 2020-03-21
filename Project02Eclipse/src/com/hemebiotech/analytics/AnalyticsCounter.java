@@ -1,5 +1,6 @@
 package com.hemebiotech.analytics;
 
+import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.TreeMap;
@@ -50,6 +51,17 @@ public class AnalyticsCounter {
 	 */
 	public Map<String, Integer> getSortedByName(){
 		return new TreeMap<String, Integer>(countMap); // sort the map by its key entries
+	}
+	
+	/**
+	 * Method to write output result into a file.
+	 *
+	 * 
+	 */
+	public void writeDataIntoFile(String fileName) throws IOException {
+		WriteDataIntoFile writeData = new WriteDataIntoFile();
+
+		writeData.write(fileName, getSortedByName());  
 	}
 	
 	public static void main(String args[]) throws Exception {

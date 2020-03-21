@@ -2,6 +2,7 @@ package com.hemebiotech.analytics;
 
 import java.util.HashMap;
 import java.util.Map;
+import java.util.TreeMap;
 import java.util.List;
 
 
@@ -41,7 +42,16 @@ public class AnalyticsCounter {
 
 		return readSymptomDataFromFile.getSymptoms();
 	}
-
+	
+	/**
+	 * Method to sort the list of symptoms in alphabetical order.
+	 *
+	 * @return success / failure of this operation
+	 */
+	public Map<String, Integer> getSortedByName(){
+		return new TreeMap<String, Integer>(countMap); // sort the map by its key entries
+	}
+	
 	public static void main(String args[]) throws Exception {
 
 	}

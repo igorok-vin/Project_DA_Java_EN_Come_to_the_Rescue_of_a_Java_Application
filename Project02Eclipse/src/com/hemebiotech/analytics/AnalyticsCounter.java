@@ -30,6 +30,17 @@ public class AnalyticsCounter {
 			}
 		}
 	}
+	
+	/**
+	 * Method to read symptoms from file.
+	 *
+	 * @return success / failure of this operation
+	 */
+	public 	List<String> readSymptomsFromFile(String fileName) {
+		ReadSymptomDataFromFile readSymptomDataFromFile =   new ReadSymptomDataFromFile(fileName); 
+
+		return readSymptomDataFromFile.getSymptoms();
+	}
 
 	public static void main(String args[]) throws Exception {
 

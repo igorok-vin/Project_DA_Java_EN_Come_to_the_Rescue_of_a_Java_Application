@@ -1,43 +1,37 @@
 package com.hemebiotech.analytics;
 
-import java.io.BufferedReader;
-import java.io.FileReader;
-import java.io.FileWriter;
+import java.util.HashMap;
+import java.util.Map;
+import java.util.List;
+
 
 public class AnalyticsCounter {
-	private static int headacheCount = 0;	// initialize to 0
-	private static int rashCount = 0;		// initialize to 0
-	private static int pupilCount = 0;		// initialize to 0
-	
-	public static void main(String args[]) throws Exception {
-		// first get input
-		BufferedReader reader = new BufferedReader (new FileReader("symptoms.txt"));
-		String line = reader.readLine();
+	private Map<String, Integer> countMap;
 
-		int i = 0;	// set i to 0
-		int headCount = 0;	// counts headaches
-		while (line != null) {
-			i++;	// increment i
-			System.out.println("symptom from file: " + line);
-			if (line.equals("headache")) {
-				headCount++;
-				System.out.println("number of headaches: " + headCount);
-			}
-			else if (line.equals("rush")) {
-				rashCount++;
-			}
-			else if (line.contains("pupils")) {
-				pupilCount++;
-			}
+	public AnalyticsCounter() {
 
-			line = reader.readLine();	// get another symptom
+		countMap = new HashMap<>();
+	}
+
+	/**
+	 * Method to generate a list of symptoms with the appropriate number of
+	 * occurrences for each symptom.
+	 *
+	 * @param fileList
+	 */
+	public void generateCountMap(List<String> fileList) {
+
+		for (String line : fileList) {
+			if (countMap.containsKey(line)) {
+				countMap.put(line, countMap.get(line) + 1);// increase the occurrence count number for repeated symptom
+															// in a list
+			} else {
+				countMap.put(line, 1);
+			}
 		}
-		
-		// next generate output
-		FileWriter writer = new FileWriter ("result.out");
-		writer.write("headache: " + headacheCount + "\n");
-		writer.write("rash: " + rashCount + "\n");
-		writer.write("dialated pupils: " + pupilCount + "\n");
-		writer.close();
+	}
+
+	public static void main(String args[]) throws Exception {
+
 	}
 }

@@ -64,7 +64,22 @@ public class AnalyticsCounter {
 		writeData.write(fileName, getSortedByName());  
 	}
 	
+	/**
+	 * Main entry point to the application.
+	 *
+	 * 
+	 */	
 	public static void main(String args[]) throws Exception {
+		
+		AnalyticsCounter analyticsCounter = new AnalyticsCounter();
+
+		List<String> rawData = analyticsCounter.readSymptomsFromFile("symptoms.txt");//read symptoms from file
+		
+		analyticsCounter.generateCountMap(rawData);//get symptoms
+		
+		analyticsCounter.writeDataIntoFile("result_out.txt");//write output result into a file 
+		
+		System.out.println("Check new generated text file results_out.txt with the list of sorted symptoms");
 
 	}
 }
